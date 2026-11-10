@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>MYkos — Cari Kos Mudah di Sekitar Polinela</title>
+    <meta name="description" content="Cari kos dekat Politeknik Negeri Lampung berdasarkan lokasi, harga, dan fasilitas. Tanyakan rekomendasi kepada asisten MYkos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="site-nav">
+        <a class="logo" href="#beranda" aria-label="MYkos beranda">MY<span>kos</span></a>
+        <button class="menu-button" id="menu-button" aria-label="Buka menu" aria-expanded="false">☰</button>
+        <nav class="nav-links" id="nav-links" aria-label="Navigasi">
+            <a href="#beranda">Beranda</a>
+            <a href="#cari-kos">Cari Kos</a>
+            <a href="#promo">Promo</a>
+            <a href="#tentang">Tentang Kami</a>
+            <a href="#masuk" class="login-link" id="login-link">Masuk</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="beranda">
+            <div class="hero-content">
+                <div class="hero-badge">⌖ Teman cari kos mahasiswa Lampung</div>
+                <h1>Temukan Kos Impianmu Dekat Polinela</h1>
+                <p>Cari tempat tinggal yang pas untukmu. Bandingkan harga, lokasi, dan fasilitas sebelum menentukan pilihan.</p>
+                <form class="search-bar" id="search-form" role="search">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <label class="sr-only" for="search-input">Cari area, nama kos, atau fasilitas</label>
+                    <input id="search-input" type="search" placeholder="Masukkan nama jalan atau area dekat kampus..." autocomplete="off">
+                    <button class="primary-btn" type="submit">Cari Sekarang</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="listing-section" id="cari-kos">
+            <div class="section-heading">
+                <div>
+                    <h2>Rekomendasi Kos Terdekat</h2>
+                    <div class="result-count" id="result-count" aria-live="polite"></div>
+                </div>
+            </div>
+            <div class="filters" aria-label="Filter kos">
+                <label class="sr-only" for="price-filter">Filter harga maksimum</label>
+                <select class="filter-select" id="price-filter">
+                    <option value="all">Semua harga</option>
+                    <option value="600000">Maks. Rp600 ribu</option>
+                    <option value="800000">Maks. Rp800 ribu</option>
+                    <option value="1000000">Maks. Rp1 juta</option>
+                </select>
+                <button class="filter-chip" type="button" data-facility="WiFi">Wi-Fi</button>
+                <button class="filter-chip" type="button" data-facility="AC">AC</button>
+                <button class="filter-chip" type="button" data-facility="Kamar Mandi Dalam">Kamar mandi dalam</button>
+                <button class="filter-chip" type="button" data-facility="Parkir">Parkir</button>
+                <button class="filter-chip favorite-filter" id="favorites-filter" type="button" aria-pressed="false">♡ Favorit</button>
+            </div>
+            <div class="kos-grid" id="kos-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="promo-section" id="promo">
+            <div class="promo-inner">
+                <div>
+                    <h2>Masih bingung memilih kos?</h2>
+                    <p>Ceritakan budget dan kebutuhanmu kepada asisten MYkos untuk mendapat rekomendasi.</p>
+                </div>
+                <button type="button" id="promo-chat">Tanya asisten MYkos ↗</button>
+            </div>
+        </section>
+
+        <section class="about-section" id="tentang">
+            <h2>Tentang MYkos</h2>
+            <p>MYkos membantu mahasiswa mencari dan membandingkan pilihan tempat tinggal di sekitar Politeknik Negeri Lampung. Gunakan filter dan asisten untuk menemukan kos yang sesuai kebutuhanmu. Pastikan mengecek informasi serta kondisi kos secara langsung sebelum menyewa.</p>
+        </section>
+    </main>
+    <footer>© 2026 MYkos · Teman cari kos di sekitar Polinela</footer>
+
+    <button class="ai-floating-btn" id="chat-toggle" type="button" aria-label="Buka asisten MYkos" aria-expanded="false" title="Tanya asisten MYkos">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.85 1.48 5.38 3.79 7.02a8.6 8.6 0 0 1-1.6 3.52c-.15.22.07.49.32.42 2.5-.65 4.4-2.02 5.57-3.08.63.12 1.28.18 1.92.18 5.52 0 10-4.03 10-9S17.52 2 12 2Z"/></svg>
+    </button>
+    <section class="chat-window" id="chat-window" aria-label="Asisten AI MYkos">
+        <div class="chat-header">
+            <div class="chat-brand">
+                <div class="chat-brand-icon">✦</div>
+                <div><h3>Asisten MYkos</h3><p id="chat-status">Siap bantu cari kos</p></div>
+            </div>
+            <div class="chat-header-actions">
+                <button id="auth-action" type="button" aria-label="Masuk ke MYkos" title="Masuk">↪</button>
+                <button id="chat-close" type="button" aria-label="Tutup chat">×</button>
+            </div>
+        </div>
+        <div class="chat-body" id="chat-body" aria-live="polite">
+            <div class="chat-welcome">Halo! 👋 Sebutkan budget, area, atau fasilitas yang kamu cari. Aku bantu bandingkan pilihan kos di MYkos.</div>
+            <div class="chat-suggestions">
+                <button class="chat-suggestion" type="button" data-question="Cari kos paling murah dekat Polinela">Kos paling murah</button>
+                <button class="chat-suggestion" type="button" data-question="Kos yang ada Wi-Fi dan AC budget di bawah 800 ribu">Wi-Fi + AC</button>
+                <button class="chat-suggestion" type="button" data-question="Bantu aku memilih kos yang cocok untuk mahasiswa">Bantu pilih kos</button>
+            </div>
+        </div>
+        <form class="chat-compose" id="chat-form">
+            <label class="sr-only" for="chat-input">Tulis pertanyaan tentang kos</label>
+            <input id="chat-input" type="text" maxlength="240" placeholder="Tanya soal kos..." autocomplete="off">
+            <button id="chat-send" type="submit" aria-label="Kirim pertanyaan">➤</button>
+        </form>
+        <div class="chat-footnote" id="chat-footnote">Masuk dengan akun praktikum untuk mulai chat AI.</div>
+    </section>
+
+    <div class="modal-backdrop" id="detail-modal" role="dialog" aria-modal="true" aria-label="Detail kos" data-modal>
+        <div class="modal">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup detail">×</button>
+            <div id="detail-content"></div>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" data-modal>
+        <form class="modal login-modal" id="login-form">
+            <button class="modal-close" type="button" data-close-modal aria-label="Tutup login">×</button>
+            <h2 id="login-title">Masuk ke MYkos</h2>
+            <p>Jalankan <strong>start_mykos.bat</strong> dan masukkan key praktikum pada prompt server. Setelah halaman terbuka, gunakan akun latihan dari materi API P10. Token hanya disimpan di memori halaman dan hilang saat dimuat ulang.</p>
+            <label for="login-name">Nama akun</label>
+            <input id="login-name" name="nama" type="text" autocomplete="username" maxlength="80" required>
+            <label for="login-password">Kata sandi</label>
+            <input id="login-password" name="sandi" type="password" autocomplete="current-password" maxlength="200" required>
+            <p class="login-error" id="login-error" role="alert"></p>
+            <div class="login-actions">
+                <button class="cancel" type="button" data-close-modal>Batal</button>
+                <button class="submit" id="login-submit" type="submit">Masuk</button>
+            </div>
+        </form>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="/app.js" defer></script>
+</body>
+</html>

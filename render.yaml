@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mykos
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OMNIROUTE_API_KEY
+        sync: false
+      - key: MYKOS_ACCOUNTS_JSON
+        sync: false
+      - key: MYKOS_TOKEN_SECRET
+        generateValue: true
